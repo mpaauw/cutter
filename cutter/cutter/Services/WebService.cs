@@ -15,6 +15,7 @@ namespace cutter.Services
         private const string URL_HOST = "hacker-news.firebaseio.com/";
         private const string URL_PATH = "v0/";
         private const string PATH_ITEM = "item/";
+        private const string PATH_USER = "user/";
         private const string PATH_FORMAT = ".json";
 
         private HttpClient client;
@@ -24,7 +25,7 @@ namespace cutter.Services
             this.client = new HttpClient();
         }
 
-        public async Task<Item> GetItemAsync(int id)
+        public async Task<Item> getItemAsync(int id)
         {
             Item item = null;
             string endpoint = buildEndpointUrl(new string[] { URL_SCHEME, URL_HOST, URL_PATH, PATH_ITEM, id.ToString(), PATH_FORMAT});
@@ -38,6 +39,22 @@ namespace cutter.Services
                 throw new HttpException();
             }
             return item;
+        }
+
+        public async Task<User> getUserAsync(string id)
+        {
+            User user = null;
+            string endpoint = buildEndpointUrl(new string[] { URL_SCHEME, URL_HOST, URL_PATH, PATH_USER, id.ToString(), PATH_FORMAT });
+            HttpResponseMessage response = await this.client.GetAsync(endpoint);
+            if (response.IsSuccessStatusCode)
+            {
+                user = await response.Content.ReadAsAsync<User>();
+            }
+            else
+            {
+                throw new HttpException();
+            }
+            return user;
         }
 
         private string buildEndpointUrl(string[] urlParts)
