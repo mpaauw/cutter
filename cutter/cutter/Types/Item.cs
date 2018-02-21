@@ -19,7 +19,7 @@ namespace cutter.Types
         /// <summary>
         /// The type of item. One of "job", "story", "comment", "poll", or "pollopt".
         /// </summary>
-        public ItemType type { get; set; }
+        public string type { get; set; }
 
         /// <summary>
         /// The username of the item's author.
