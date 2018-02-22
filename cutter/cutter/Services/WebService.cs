@@ -19,26 +19,20 @@ namespace cutter.Services
             this.client = new HttpClient();
         }
 
-        public async Task<T> getContentAsync<T>(string id, string pathObject)
+        public async Task<T> getContentAsync<T>(string endpoint)
         {
             T content = default(T);
-            string endpoint = buildEndpointUrl(new string[] { Constants.URL_SCHEME, Constants.URL_HOST, Constants.URL_PATH, pathObject, id, Constants.PATH_FORMAT });
             HttpResponseMessage response = await this.client.GetAsync(endpoint);
             if(response.IsSuccessStatusCode)
             {
                 content = await response.Content.ReadAsAsync<T>();
             }
+            else
+            {
+                throw new HttpException(Constants.HTTP_EXCEPTION_GENERIC);
+            }
             return content;
         }
 
-        private string buildEndpointUrl(string[] urlParts)
-        {
-            StringBuilder builder = new StringBuilder();
-            foreach(string urlPart in urlParts)
-            {
-                builder.Append(urlPart);
-            }
-            return builder.ToString();
-        }
     }
 }
