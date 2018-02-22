@@ -6,18 +6,12 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Text;
 using System.Threading.Tasks;
+using cutter.Util;
 
 namespace cutter.Services
 {
     public class WebService
     {
-        private const string URL_SCHEME = "https://";
-        private const string URL_HOST = "hacker-news.firebaseio.com/";
-        private const string URL_PATH = "v0/";
-        private const string PATH_ITEM = "item/";
-        private const string PATH_USER = "user/";
-        private const string PATH_FORMAT = ".json";
-
         private HttpClient client;
 
         public WebService()
@@ -25,36 +19,16 @@ namespace cutter.Services
             this.client = new HttpClient();
         }
 
-        public async Task<Item> getItemAsync(int id)
+        public async Task<T> getContentAsync<T>(string id, string pathObject)
         {
-            Item item = null;
-            string endpoint = buildEndpointUrl(new string[] { URL_SCHEME, URL_HOST, URL_PATH, PATH_ITEM, id.ToString(), PATH_FORMAT});
+            T content = default(T);
+            string endpoint = buildEndpointUrl(new string[] { Constants.URL_SCHEME, Constants.URL_HOST, Constants.URL_PATH, pathObject, id, Constants.PATH_FORMAT });
             HttpResponseMessage response = await this.client.GetAsync(endpoint);
             if(response.IsSuccessStatusCode)
             {
-                item = await response.Content.ReadAsAsync<Item>();
+                content = await response.Content.ReadAsAsync<T>();
             }
-            else
-            {
-                throw new HttpException();
-            }
-            return item;
-        }
-
-        public async Task<User> getUserAsync(string id)
-        {
-            User user = null;
-            string endpoint = buildEndpointUrl(new string[] { URL_SCHEME, URL_HOST, URL_PATH, PATH_USER, id.ToString(), PATH_FORMAT });
-            HttpResponseMessage response = await this.client.GetAsync(endpoint);
-            if (response.IsSuccessStatusCode)
-            {
-                user = await response.Content.ReadAsAsync<User>();
-            }
-            else
-            {
-                throw new HttpException();
-            }
-            return user;
+            return content;
         }
 
         private string buildEndpointUrl(string[] urlParts)
