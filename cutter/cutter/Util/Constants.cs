@@ -19,5 +19,6 @@ namespace cutter.Util
         public const string ITEM_TYPE_COMMENT = "comment";
         public const string ITEM_TYPE_POLL = "poll";
         public const string ITEM_TYPE_POLLOPT = "pollopt";
+        public const string HTTP_EXCEPTION_GENERIC = "HttpException encountered.";
     }
 }
