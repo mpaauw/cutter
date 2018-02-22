@@ -13,6 +13,7 @@ namespace cutter.Util
         public const string URL_PATH = "v0/";
         public const string PATH_ITEM = "item/";
         public const string PATH_USER = "user/";
+        public const string PATH_MAX_ITEM = "maxitem/";
         public const string PATH_FORMAT = ".json";
         public const string ITEM_TYPE_JOB = "job";
         public const string ITEM_TYPE_STORY = "story";
