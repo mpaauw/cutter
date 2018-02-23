@@ -1,4 +1,6 @@
-﻿using cutter.Services;
+﻿using cutter.Engine;
+using cutter.Types;
+using cutter.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,6 @@ namespace cutter_test
     {
         static void Main(string[] args)
         {
-            WebService service = new WebService();
-            var item = service.GetItemAsync(16424954).Result;
-            string lol = "test";
         }
     }
 }
