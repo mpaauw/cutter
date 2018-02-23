@@ -15,37 +15,38 @@ namespace cutter.Engine
         private readonly string GET_ITEM_ENDPOINT;
         private readonly string GET_USER_ENDPOINT;
         private readonly string GET_MAX_ITEM_ENDPOINT;
-        private readonly string GET_TOP_STORIES_ENDPOINT;
+        private readonly string GET_TOP_ITEMS_ENDPOINT;
 
         public ApiEngine()
         {
             this.webService = new WebService();
-            this.GET_ITEM_ENDPOINT = Helper.buildEndpointUrl(new string[] { Constants.URL_SCHEME, Constants.URL_HOST, Constants.URL_PATH, Constants.PATH_ITEM, "{0}", Constants.PATH_FORMAT });
-            this.GET_USER_ENDPOINT = Helper.buildEndpointUrl(new string[] { Constants.URL_SCHEME, Constants.URL_HOST, Constants.URL_PATH, Constants.PATH_USER, "{0}", Constants.PATH_FORMAT });
-            this.GET_MAX_ITEM_ENDPOINT = Helper.buildEndpointUrl(new string[] { Constants.URL_SCHEME, Constants.URL_HOST, Constants.URL_PATH, Constants.PATH_MAX_ITEM, Constants.PATH_FORMAT });
-            this.GET_TOP_STORIES_ENDPOINT = Helper.buildEndpointUrl(new string[] { Constants.URL_SCHEME, Constants.URL_HOST, Constants.URL_PATH, Constants.PATH_TOP_STORIES, Constants.PATH_FORMAT });
+            this.GET_ITEM_ENDPOINT = Helper.BuildEndpointUrl(new string[] { Constants.URL_SCHEME, Constants.URL_HOST, Constants.URL_PATH, Constants.PATH_ITEM, "{0}", Constants.URL_FORMAT });
+            this.GET_USER_ENDPOINT = Helper.BuildEndpointUrl(new string[] { Constants.URL_SCHEME, Constants.URL_HOST, Constants.URL_PATH, Constants.PATH_USER, "{0}", Constants.URL_FORMAT });
+            this.GET_MAX_ITEM_ENDPOINT = Helper.BuildEndpointUrl(new string[] { Constants.URL_SCHEME, Constants.URL_HOST, Constants.URL_PATH, Constants.PATH_MAX_ITEM, Constants.URL_FORMAT });
+            this.GET_TOP_ITEMS_ENDPOINT = Helper.BuildEndpointUrl(new string[] { Constants.URL_SCHEME, Constants.URL_HOST, Constants.URL_PATH, "{0}", Constants.URL_FORMAT });
         }
 
-        public Item GetItem(string id)
+        public T GetItemByType<T>(int id)
         {
-            return this.webService.getContentAsync<Item>(String.Format(this.GET_ITEM_ENDPOINT, id)).Result;
+            return this.webService.GetContentAsync<T>(String.Format(this.GET_ITEM_ENDPOINT, id)).Result;
         }
 
         public Item GetMaxItem()
         {
-            string id = this.webService.getContentAsync<string>(this.GET_MAX_ITEM_ENDPOINT).Result;
-            return GetItem(id);
+            int id = this.webService.GetContentAsync<int>(this.GET_MAX_ITEM_ENDPOINT).Result;
+            return GetItemByType<Item>(id);
         }
 
-        public User GetUser(string id)
+        public User GetUser(int id)
         {
-            return this.webService.getContentAsync<User>(String.Format(this.GET_USER_ENDPOINT, id)).Result;
+            return this.webService.GetContentAsync<User>(String.Format(this.GET_USER_ENDPOINT, id)).Result;
         }
 
-        public int[] GetTopStoryIds()
+        public int[] GetItemIdsByCategory(string category)
         {
-            return this.webService.getContentAsync<int[]>(this.GET_TOP_STORIES_ENDPOINT).Result;
+            return this.webService.GetContentAsync<int[]>(string.Format(this.GET_TOP_ITEMS_ENDPOINT, category)).Result;
         }
+
 
     }
 }
