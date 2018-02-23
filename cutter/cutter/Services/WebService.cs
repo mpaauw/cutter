@@ -19,7 +19,7 @@ namespace cutter.Services
             this.client = new HttpClient();
         }
 
-        public async Task<T> getContentAsync<T>(string endpoint)
+        public async Task<T> GetContentAsync<T>(string endpoint)
         {
             T content = default(T);
             HttpResponseMessage response = await this.client.GetAsync(endpoint);
@@ -33,6 +33,5 @@ namespace cutter.Services
             }
             return content;
         }
-
     }
 }
