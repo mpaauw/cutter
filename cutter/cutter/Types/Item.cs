@@ -44,7 +44,7 @@ namespace cutter.Types
         /// <summary>
         /// The comment's parent: either another comment or the relevant story.
         /// </summary>
-        public Item parent { get; set; }
+        public int parent { get; set; }
 
         /// <summary>
         /// The pollopt's associated poll.

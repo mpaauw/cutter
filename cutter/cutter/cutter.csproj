@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{00459179-8761-4117-9B9D-74BB96EDDA72}</ProjectGuid>
+    <ProjectGuid>{E7A96211-1BF4-4663-9EFF-3E14B7E4480F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>cutter</RootNamespace>
     <AssemblyName>cutter</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -61,10 +61,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\ApiEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\WebService.cs" />
     <Compile Include="Types\Item.cs" />
-    <Compile Include="Types\ItemType.cs" />
+    <Compile Include="Types\User.cs" />
+    <Compile Include="Util\Constants.cs" />
+    <Compile Include="Util\Helper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

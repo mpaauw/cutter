@@ -34,5 +34,11 @@ namespace cutter.Engine
             return this.webService.getContentAsync<User>(String.Format(this.GET_USER_ENDPOINT, id)).Result;
         }
 
+        public Item GetMaxItem()
+        {
+            string id = this.webService.getContentAsync<string>(this.GET_MAX_ITEM_ENDPOINT).Result;
+            return GetItem(id);
+        }
+
     }
 }
