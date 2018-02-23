@@ -46,7 +46,5 @@ namespace cutter.Engine
         {
             return this.webService.GetContentAsync<int[]>(string.Format(this.GET_TOP_ITEMS_ENDPOINT, category)).Result;
         }
-
-
     }
 }
