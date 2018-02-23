@@ -80,6 +80,5 @@ namespace cutter.Types
         /// In the case of stories or polls, the total comment count.
         /// </summary>
         public int descendants { get; set; }
-
     }
 }
