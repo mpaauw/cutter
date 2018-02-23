@@ -1,2 +1,4 @@
 language: csharp
 solution: cutter.sln
+script:
+  - xbuild ./cutter/cutter.sln /p:Configuration=Release /p:TargetFrameworkVersion=v4.5 /toolsversion:12.0
