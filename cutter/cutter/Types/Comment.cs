@@ -42,6 +42,6 @@ namespace cutter.Types
         /// <summary>
         /// The type of item: "comment".
         /// </summary>
-        public const string type = Constants.ITEM_TYPE_COMMENT;
+        public string type { get; set; }
     }
 }

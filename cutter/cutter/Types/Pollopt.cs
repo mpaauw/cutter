@@ -42,6 +42,6 @@ namespace cutter.Types
         /// <summary>
         /// The type of item: "pollopt".
         /// </summary>
-        public const string type = Constants.ITEM_TYPE_POLLOPT;
+        public string type { get; set; }
     }
 }

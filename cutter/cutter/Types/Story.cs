@@ -47,7 +47,7 @@ namespace cutter.Types
         /// <summary>
         /// The type of item: "story".
         /// </summary>
-        public const string type = Constants.ITEM_TYPE_STORY;
+        public string type { get; set; }
 
         /// <summary>
         /// The URL of the story.

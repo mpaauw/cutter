@@ -57,6 +57,6 @@ namespace cutter.Types
         /// <summary>
         /// The type of item: "poll".
         /// </summary>
-        public const string type = Constants.ITEM_TYPE_POLL;
+        public string type { get; set; }
     }
 }

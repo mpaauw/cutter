@@ -42,7 +42,7 @@ namespace cutter.Types
         /// <summary>
         /// The type of item: "job".
         /// </summary>
-        public const string type = Constants.ITEM_TYPE_JOB;
+        public string type { get; set; }
 
         /// <summary>
         /// The URL of the story.
