@@ -37,7 +37,7 @@ namespace cutter.Engine
             return GetItemByType<Item>(id);
         }
 
-        public User GetUser(int id)
+        public User GetUser(string id)
         {
             return this.webService.GetContentAsync<User>(String.Format(this.GET_USER_ENDPOINT, id)).Result;
         }
